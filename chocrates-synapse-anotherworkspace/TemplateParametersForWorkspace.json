@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "chocrates-synapse-anotherworkspace"
+		},
+		"chocrates-synapse-anotherworkspace-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"chocrates-synapse-anotherworkspace-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://chocrates.dfs.core.windows.net"
+		}
+	}
+}
