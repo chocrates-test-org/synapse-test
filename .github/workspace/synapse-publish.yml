@@ -1,0 +1,37 @@
+name: Deploy Synapse to Azure
+
+on:
+  push:
+    branches:
+      - workspace_publish
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+        # github branch
+          ref: workspace_publish
+          
+      - name: Deploy Synapse ARM Template
+        uses: azure/arm-deploy@v1
+        with:
+          # Azure Resource Manager template file
+          template: ./MyTemplate.json
+          # Azure Resource Manager template parameters file
+          parameters: ./MyTemplate.parameters.json
+          # Azure subscription ID
+          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+          # Azure credentials
+          credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          # Resource group name
+          resourceGroupName: ${{ secrets.RESOURCE_GROUP }}
+          # Resource group location
+          location: ${{ secrets.LOCATION }}
+          # Deployment mode
+          deploymentMode: Incremental
+          # Deployment name
+          deploymentName: ${{ secrets.DEPLOYMENT_NAME }}
+          # Output ARM template parameters
+          output: templateParameters
